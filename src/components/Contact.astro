@@ -16,7 +16,7 @@ const {
   method = "POST",
   ctaLabel = "Nachricht senden",
   successMessage = "Danke! Deine Nachricht wurde erfolgreich übermittelt.",
-  errorMessage = "Uff – da ging was schief. Bitte versuch’s erneut."
+  errorMessage = "Uff – da ging was schief. Bitte versuch’s erneut.",
 } = Astro.props;
 ---
 
@@ -128,4 +128,61 @@ const {
       </div>
     </form>
   </div>
+
+  <script is:inline>
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    function setStatus(msg, ok = true) {
+      statusEl.textContent = msg;
+      statusEl.className =
+        "text-sm " + (ok ? "text-green-400" : "text-red-400");
+    }
+
+    form?.addEventListener("submit", async (e) => {
+      // Wenn action extern ist (http/https), normales Submit zulassen
+      const action = form.getAttribute("action") || "";
+      if (/^https?:\/\//i.test(action)) return;
+
+      e.preventDefault();
+
+      // Primitive Client-Validation
+      const name = (
+        form.querySelector("#name") as HTMLInputElement
+      ).value.trim();
+      const email = (
+        form.querySelector("#email") as HTMLInputElement
+      ).value.trim();
+      const message = (
+        form.querySelector("#message") as HTMLTextAreaElement
+      ).value.trim();
+      const consent = (form.querySelector("#consent") as HTMLInputElement)
+        .checked;
+
+      if (!name || !email || !message || !consent) {
+        setStatus(
+          "Bitte fülle alle Pflichtfelder aus und bestätige die Einwilligung.",
+          false
+        );
+        return;
+      }
+
+      try {
+        setStatus("Senden …", true);
+        const formData = new FormData(form);
+        const res = await fetch(action || "/api/contact", {
+          method: form.getAttribute("method") || "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (!res.ok) throw new Error("Request failed");
+
+        setStatus({ successMessage: `${successMessage}` }.successMessage, true);
+        form.reset();
+      } catch (err) {
+        setStatus({ errorMessage: `${errorMessage}` }.errorMessage, false);
+      }
+    });
+  </script>
 </section>
