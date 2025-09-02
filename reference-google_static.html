@@ -1,0 +1,413 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link
+      as="style"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700"
+      onload="this.rel='stylesheet'"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      :root {
+        --primary-color: #f97316;
+      }
+      .glow {
+        box-shadow: 0 0 2px var(--primary-color), 0 0 5px var(--primary-color),
+          0 0 10px var(--primary-color);
+      }
+      .icon-glow {
+        filter: drop-shadow(0 0 3px var(--primary-color));
+      }
+      .cta-button {
+        position: relative;
+        overflow: hidden;
+        transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out,
+          box-shadow 0.4s ease-in-out;
+      }
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background-color: white;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+        z-index: 0;
+      }
+      .cta-button:hover::before {
+        width: 250%;
+        height: 250%;
+      }
+      .cta-button span {
+        position: relative;
+        z-index: 1;
+      }
+      .cta-button:hover {
+        color: var(--primary-color);
+        box-shadow: 0 0 5px var(--primary-color), 0 0 15px var(--primary-color),
+          0 0 25px var(--primary-color);
+      }
+    </style>
+    <title>Stay Silent Records</title>
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body class="bg-black">
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-black dark group/design-root overflow-x-hidden"
+      style="font-family: 'Spline Sans', 'Noto Sans', sans-serif"
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header
+          class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap bg-black/50 backdrop-blur-sm px-10 py-4 border-b border-solid border-b-gray-800 transition-all duration-300"
+        >
+          <div class="flex items-center gap-3 text-white">
+            <svg
+              class="h-8 w-8 text-[var(--primary-color)]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+            <h2 class="text-white text-xl font-bold tracking-tight">
+              Stay Silent Records
+            </h2>
+          </div>
+          <div class="hidden md:flex flex-1 justify-end items-center gap-8">
+            <nav class="flex items-center gap-6">
+              <a
+                class="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+                href="#"
+                >Services</a
+              >
+              <a
+                class="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+                href="#"
+                >About</a
+              >
+              <a
+                class="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+                href="#"
+                >Contact</a
+              >
+            </nav>
+            <button
+              class="cta-button flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-[var(--primary-color)] text-black text-sm font-bold leading-normal tracking-wide"
+            >
+              <span class="truncate">Book a Session</span>
+            </button>
+          </div>
+          <div class="md:hidden">
+            <button class="text-white">
+              <span class="material-symbols-outlined"> menu </span>
+            </button>
+          </div>
+        </header>
+        <main class="flex-grow pt-20">
+          <div
+            class="relative min-h-[60vh] flex items-center justify-center text-center px-4 overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-cover bg-center z-0"
+              style="
+                background-image: linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 1) 0%,
+                    rgba(0, 0, 0, 0.6) 50%,
+                    rgba(0, 0, 0, 0.3) 100%
+                  ),
+                  url('https://lh3.googleusercontent.com/aida-public/AB6AXuCzi3YVV7-RRNH88G0F1nkkXgmpPH8yTVNMA7HZNakb-Li1IAKXH3z5SoURl7OuD-_Dq3uCiqZdIqGt4IyHI96WNOCvx9nv1MC9C4pO8B2412b_MCV-_hxwlfwC1vSWWRWDmtWH_6-qasv85x-HF1xd0sJdjkKQJyJpdU4tKUtFzCMbLEjeMDGBOZ0qCZVkNjlfoK5AunKUPzWN8flkLPKPXx_40fGw5DVzZBzb6Wq5YgNnZehpz0wY8ydJkvZhHbir_NZ-wkyPzEw');
+              "
+            ></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-50 z-10"
+            ></div>
+            <div class="relative z-20 flex flex-col gap-6 items-center">
+              <h1
+                class="text-white text-5xl md:text-7xl font-black tracking-tighter"
+              >
+                Elevate Your Sound
+              </h1>
+              <p class="text-gray-300 text-base md:text-lg max-w-2xl">
+                Stay Silent Records offers professional mixing, mastering, and
+                production services to bring your music to its full potential.
+              </p>
+              <button
+                class="cta-button flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-transparent text-white border-2 border-[var(--primary-color)] text-base font-bold tracking-wide"
+              >
+                <span class="truncate">Explore Services</span>
+              </button>
+            </div>
+          </div>
+          <div class="px-10 md:px-20 lg:px-40 py-20 bg-black">
+            <div class="max-w-7xl mx-auto">
+              <div class="text-center mb-16">
+                <h2
+                  class="text-4xl md:text-5xl font-bold text-white tracking-tight"
+                >
+                  Our Services
+                </h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                  We provide top-tier mixing, mastering, and production services
+                  tailored to your unique sound, with a futuristic approach and
+                  a clean, modern aesthetic.
+                </p>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div
+                  class="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-[var(--primary-color)] transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div class="inline-block p-4 bg-gray-800 rounded-full mb-4">
+                    <svg
+                      class="w-8 h-8 text-[var(--primary-color)] icon-glow"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-white mb-2">Mixing</h3>
+                  <p class="text-gray-400 text-sm">
+                    Achieve a balanced and polished mix that brings out the best
+                    in your tracks.
+                  </p>
+                </div>
+                <div
+                  class="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-[var(--primary-color)] transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div class="inline-block p-4 bg-gray-800 rounded-full mb-4">
+                    <svg
+                      class="w-8 h-8 text-[var(--primary-color)] icon-glow"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                      <path
+                        d="M9 19.5l9-9-9-9"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-white mb-2">Mastering</h3>
+                  <p class="text-gray-400 text-sm">
+                    Ensure your music sounds its best on all platforms with our
+                    professional mastering services.
+                  </p>
+                </div>
+                <div
+                  class="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-[var(--primary-color)] transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div class="inline-block p-4 bg-gray-800 rounded-full mb-4">
+                    <svg
+                      class="w-8 h-8 text-[var(--primary-color)] icon-glow"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 0 1 6 0v8.25a3 3 0 0 1-3 3Z"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-white mb-2">Production</h3>
+                  <p class="text-gray-400 text-sm">
+                    From songwriting to final mix, we'll help you create your
+                    next hit.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-10 md:px-20 lg:px-40 py-20 bg-gray-900/30">
+            <div class="max-w-7xl mx-auto">
+              <div class="text-center mb-16">
+                <h2
+                  class="text-4xl md:text-5xl font-bold text-white tracking-tight"
+                >
+                  Why Choose Us?
+                </h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                  We are committed to delivering exceptional results with a
+                  focus on quality, efficiency, and affordability.
+                </p>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex items-start gap-4">
+                  <div class="text-[var(--primary-color)] mt-1">
+                    <span class="material-symbols-outlined icon-glow"
+                      >group</span
+                    >
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white">Expert Team</h3>
+                    <p class="text-gray-400 text-sm">
+                      Our team of experienced engineers and producers are
+                      dedicated to bringing your vision to life.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="text-[var(--primary-color)] mt-1">
+                    <span class="material-symbols-outlined icon-glow"
+                      >timer</span
+                    >
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white">
+                      Fast Turnaround
+                    </h3>
+                    <p class="text-gray-400 text-sm">
+                      We understand the importance of timely delivery and strive
+                      to meet your deadlines.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="text-[var(--primary-color)] mt-1">
+                    <span class="material-symbols-outlined icon-glow"
+                      >paid</span
+                    >
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-white">
+                      Competitive Pricing
+                    </h3>
+                    <p class="text-gray-400 text-sm">
+                      We offer competitive pricing without compromising on the
+                      quality of our services.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-10 md:px-20 lg:px-40 py-20 bg-black">
+            <div class="text-center">
+              <h2
+                class="text-4xl md:text-5xl font-bold text-white tracking-tight"
+              >
+                Ready to Get Started?
+              </h2>
+              <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
+                Let's create something amazing together. Book your session now
+                and take the first step towards professional sound.
+              </p>
+              <div class="mt-8">
+                <button
+                  class="cta-button flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-transparent text-white border-2 border-[var(--primary-color)] text-base font-bold tracking-wide mx-auto"
+                >
+                  <span class="truncate">Book a Session</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer class="bg-black border-t border-gray-800">
+          <div class="max-w-7xl mx-auto px-10 md:px-20 lg:px-40 py-12">
+            <div
+              class="flex flex-col md:flex-row justify-between items-center gap-8"
+            >
+              <div class="flex items-center gap-3 text-white">
+                <svg
+                  class="h-8 w-8 text-[var(--primary-color)]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <h2 class="text-white text-lg font-bold">
+                  Stay Silent Records
+                </h2>
+              </div>
+              <div class="flex items-center gap-4">
+                <a
+                  class="text-gray-400 hover:text-[var(--primary-color)] transition-colors"
+                  href="#"
+                  ><svg
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 256 256"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"
+                    ></path></svg
+                ></a>
+                <a
+                  class="text-gray-400 hover:text-[var(--primary-color)] transition-colors"
+                  href="#"
+                  ><svg
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 256 256"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"
+                    ></path></svg
+                ></a>
+                <a
+                  class="text-gray-400 hover:text-[var(--primary-color)] transition-colors"
+                  href="#"
+                  ><svg
+                    class="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 256 256"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"
+                    ></path></svg
+                ></a>
+              </div>
+            </div>
+            <div class="mt-8 text-center text-gray-500 text-sm">
+              <p>© 2024 Stay Silent Records. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
