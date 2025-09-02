@@ -1,0 +1,26 @@
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const els = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+    els.forEach((el) => observer.observe(el));
+  });
+</script>
+
+<style is:global>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(2.5rem); /* entspricht translate-y-10 */
+    transition: all 0.7s;
+  }
+  .fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
