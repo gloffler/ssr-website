@@ -1,0 +1,131 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  action?: string; // z.B. "/api/contact" oder externer Endpoint (Formspree/Getform)
+  method?: "POST" | "GET";
+  ctaLabel?: string;
+  successMessage?: string;
+  errorMessage?: string;
+}
+
+const {
+  title = "Kontakt aufnehmen",
+  subtitle = "Sag uns kurz, worum es geht – wir melden uns zeitnah.",
+  action = "/api/contact",
+  method = "POST",
+  ctaLabel = "Nachricht senden",
+  successMessage = "Danke! Deine Nachricht wurde erfolgreich übermittelt.",
+  errorMessage = "Uff – da ging was schief. Bitte versuch’s erneut."
+} = Astro.props;
+---
+
+<section id="contact" class="px-6 md:px-10 lg:px-40 py-20 bg-black">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight">
+        {title}
+      </h2>
+      <p class="text-gray-400 mt-3">{subtitle}</p>
+    </div>
+
+    <form
+      id="contactForm"
+      action={action}
+      method={method}
+      class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 space-y-6"
+      novalidate
+    >
+      <!-- Honeypot -->
+      <input
+        type="text"
+        name="company"
+        tabindex="-1"
+        autocomplete="off"
+        class="hidden"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-300"
+            >Dein Name</label
+          >
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            class="mt-2 w-full rounded-xl bg-black/40 border border-gray-700 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]"
+            placeholder="Max Mustermann"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-300"
+            >E-Mail</label
+          >
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            class="mt-2 w-full rounded-xl bg-black/40 border border-gray-700 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]"
+            placeholder="dein.name@mail.com"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="subject" class="block text-sm font-medium text-gray-300"
+          >Betreff</label
+        >
+        <input
+          id="subject"
+          name="subject"
+          type="text"
+          class="mt-2 w-full rounded-xl bg-black/40 border border-gray-700 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]"
+          placeholder="Z. B. Mixing für Single"
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-300"
+          >Nachricht</label
+        >
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={6}
+          class="mt-2 w-full rounded-xl bg-black/40 border border-gray-700 text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#FF6B00]"
+          placeholder="Erzähl kurz, worum es geht …"></textarea>
+      </div>
+
+      <div class="flex items-start gap-3">
+        <input
+          id="consent"
+          name="consent"
+          type="checkbox"
+          required
+          class="mt-1 h-5 w-5 rounded border-gray-700 bg-black/40 text-[#FF6B00] focus:ring-[#FF6B00]"
+        />
+        <label for="consent" class="text-sm text-gray-400">
+          Ich stimme zu, dass meine Angaben zur Kontaktaufnahme verarbeitet
+          werden. (<a href="/privacy" class="text-[#FF6B00] hover:underline"
+            >Datenschutz</a
+          >)
+        </label>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          type="submit"
+          class="cta-button inline-flex items-center justify-center rounded-full px-6 h-12 font-semibold bg-[#FF6B00] text-black hover:shadow-[0_0_20px_#FF6B00] transition"
+        >
+          <span>{ctaLabel}</span>
+        </button>
+        <p id="formStatus" class="text-sm text-gray-400" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
