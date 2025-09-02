@@ -1,0 +1,284 @@
+---
+const consentKey = "cookie-consent";
+---
+
+<div id="cc-banner" class="fixed inset-x-0 bottom-0 z-[100]">
+  <div
+    class="mx-auto max-w-5xl m-4 rounded-2xl border border-gray-800 bg-neutral-900/95 text-gray-100 backdrop-blur px-6 py-5 shadow-2xl"
+  >
+    <div
+      class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <div class="space-y-1">
+        <h3 class="text-lg font-semibold">Cookies & Daten</h3>
+        <p class="text-sm text-gray-300">
+          Wir verwenden essenzielle Cookies sowie optional Analytics/Marketing,
+          um unsere Seite zu verbessern. Du kannst
+          <button
+            id="cc-open-prefs"
+            class="underline underline-offset-2 hover:text-white"
+            >deine Auswahl anpassen
+          </button>
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <button
+          id="cc-decline"
+          class="rounded-xl border border-gray-700 px-4 py-2 text-sm hover:bg-neutral-800"
+        >
+          Alle ablehnen
+        </button>
+        <button
+          id="cc-customize"
+          class="rounded-xl border border-gray-700 px-4 py-2 text-sm hover:bg-neutral-800"
+        >
+          Anpassen
+        </button>
+        <button
+          id="cc-accept"
+          class="rounded-xl bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/20"
+        >
+          Alle akzeptieren
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Preferences Modal -->
+<div id="cc-modal" class="fixed inset-0 z-[110] hidden">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <div
+    class="relative mx-auto mt-24 w-[95%] max-w-2xl rounded-2xl border border-gray-800 bg-neutral-900 text-gray-100 shadow-2xl"
+  >
+    <div
+      class="flex items-center justify-between border-b border-gray-800 px-6 py-4"
+    >
+      <h4 class="text-lg font-semibold">Datenschutzeinstellungen</h4>
+      <button
+        id="cc-close"
+        class="rounded-lg px-2 py-1 text-gray-300 hover:bg-neutral-800"
+        >✕</button
+      >
+    </div>
+
+    <div class="space-y-4 px-6 py-5">
+      <!-- Essential -->
+      <div class="rounded-xl border border-gray-800 p-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="font-medium">Essentiell</div>
+            <p class="text-sm text-gray-300">
+              Erforderlich für die Grundfunktionen der Website. Nicht
+              deaktivierbar.
+            </p>
+          </div>
+          <input
+            type="checkbox"
+            checked
+            disabled
+            class="h-5 w-5 rounded border-gray-700 bg-neutral-800"
+          />
+        </div>
+      </div>
+
+      <!-- Analytics -->
+      <div class="rounded-xl border border-gray-800 p-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <label for="cc-analytics" class="font-medium">Analytics</label>
+            <p class="text-sm text-gray-300">
+              Anonyme Statistiken zur Verbesserung unserer Inhalte.
+            </p>
+          </div>
+          <input
+            id="cc-analytics"
+            type="checkbox"
+            class="h-5 w-5 rounded border-gray-700 bg-neutral-800"
+          />
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="rounded-xl border border-gray-800 p-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <label for="cc-marketing" class="font-medium">Marketing</label>
+            <p class="text-sm text-gray-300">
+              Personalisierte Inhalte, z. B. eingebettete Videos/Ads.
+            </p>
+          </div>
+          <input
+            id="cc-marketing"
+            type="checkbox"
+            class="h-5 w-5 rounded border-gray-700 bg-neutral-800"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-3 border-t border-gray-800 px-6 py-4">
+      <button
+        id="cc-save-decline"
+        class="rounded-xl border border-gray-700 px-4 py-2 text-sm hover:bg-neutral-800"
+      >
+        Alle ablehnen
+      </button>
+      <button
+        id="cc-save"
+        class="rounded-xl bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/20"
+      >
+        Auswahl speichern
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = "cookie-consent";
+
+  const defaults = {
+    essential: true,
+    analytics: false,
+    marketing: false,
+    // timestamp for auditing (optional)
+    ts: null,
+  };
+
+  function getStored() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+
+  function save(consent) {
+    const data = { ...consent, ts: new Date().toISOString() };
+    localStorage.setItem(KEY, JSON.stringify(data));
+    // expose & event
+    window.__consent = {
+      get: () => JSON.parse(localStorage.getItem(KEY) || "null"),
+      set: (c) => {
+        save(c);
+        applyScripts(c);
+        document.dispatchEvent(
+          new CustomEvent("cookie-consent:change", { detail: c })
+        );
+      },
+    };
+    document.dispatchEvent(
+      new CustomEvent("cookie-consent:change", { detail: data })
+    );
+  }
+
+  function applyScripts(consent) {
+    const nodes = document.querySelectorAll(
+      'script[type="text/plain"][data-category]'
+    );
+    nodes.forEach((node) => {
+      const cat = node.getAttribute("data-category");
+      if (cat === "essential" || consent?.[cat]) {
+        const s = document.createElement("script");
+        // copy attributes except type
+        [...node.attributes].forEach((a) => {
+          if (a.name === "type") return;
+          if (a.name === "data-src") {
+            s.src = a.value;
+            return;
+          }
+          if (a.name.startsWith("data-")) return; // skip other data-*
+          s.setAttribute(a.name, a.value);
+        });
+        if (node.textContent?.trim()) s.text = node.textContent;
+        node.replaceWith(s);
+      }
+    });
+  }
+
+  // UI elements
+  const banner = document.getElementById("cc-banner");
+  const modal = document.getElementById("cc-modal");
+
+  const btnAccept = document.getElementById("cc-accept");
+  const btnDecline = document.getElementById("cc-decline");
+  const btnCustomize = document.getElementById("cc-customize");
+  const btnOpenPrefs = document.getElementById("cc-open-prefs");
+  const btnClose = document.getElementById("cc-close");
+  const btnSave = document.getElementById("cc-save");
+  const btnSaveDecline = document.getElementById("cc-save-decline");
+
+  const chkAnalytics = document.getElementById("cc-analytics");
+  const chkMarketing = document.getElementById("cc-marketing");
+
+  function openModal() {
+    modal.classList.remove("hidden");
+  }
+  function closeModal() {
+    modal.classList.add("hidden");
+  }
+
+  // Initial: show/hide banner
+  const existing = getStored();
+  if (existing) {
+    banner.style.display = "none";
+    applyScripts(existing);
+  } else {
+    banner.style.display = "block";
+  }
+
+  // Prefill toggles if existing
+  if (existing) {
+    chkAnalytics.checked = !!existing.analytics;
+    chkMarketing.checked = !!existing.marketing;
+  }
+
+  // Buttons
+  btnAccept?.addEventListener("click", () => {
+    const consent = { ...defaults, analytics: true, marketing: true };
+    save(consent);
+    applyScripts(consent);
+    banner.style.display = "none";
+  });
+
+  btnDecline?.addEventListener("click", () => {
+    const consent = { ...defaults, analytics: false, marketing: false };
+    save(consent);
+    banner.style.display = "none";
+  });
+
+  btnCustomize?.addEventListener("click", openModal);
+  btnOpenPrefs?.addEventListener("click", openModal);
+  btnClose?.addEventListener("click", closeModal);
+
+  btnSave?.addEventListener("click", () => {
+    const consent = {
+      essential: true,
+      analytics: !!chkAnalytics.checked,
+      marketing: !!chkMarketing.checked,
+    };
+    save(consent);
+    applyScripts(consent);
+    banner.style.display = "none";
+    closeModal();
+  });
+
+  btnSaveDecline?.addEventListener("click", () => {
+    const consent = { essential: true, analytics: false, marketing: false };
+    save(consent);
+    banner.style.display = "none";
+    closeModal();
+  });
+
+  // Expose API early
+  window.__consent = {
+    get: () => getStored(),
+    set: (c) => {
+      save(c);
+      applyScripts(c);
+    },
+  };
+</script>
