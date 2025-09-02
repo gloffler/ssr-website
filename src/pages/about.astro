@@ -1,6 +1,5 @@
 ---
 import Navbar from "../components/Navbar.astro";
-import About from "../components/About.astro";
 import Footer from "../components/Footer.astro";
 
 import "../styles/global.css";
@@ -16,7 +15,54 @@ import "../styles/global.css";
   </head>
   <body class="bg-black">
     <Navbar />
-    <About />
+    <section
+      class="px-6 md:px-10 lg:px-40 py-20 bg-black min-h-screen flex items-center"
+    >
+      <div
+        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Bildplatzhalter -->
+        <div
+          class="relative w-full h-80 md:h-[500px] bg-gray-800 rounded-2xl overflow-hidden flex items-center justify-center"
+        >
+          <span class="text-gray-500">[ Dein Foto hier ]</span>
+          {
+            /*
+          Hier später dein <img> einfügen, z. B.:
+          <img src="/assets/dein-bild.jpg" alt="Gregor Löffler" class="w-full h-full object-cover" />
+        */
+          }
+        </div>
+
+        <!-- Text -->
+        <div>
+          <h1
+            class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6"
+          >
+            Über Stay Silent Records
+          </h1>
+          <p class="text-gray-400 leading-relaxed mb-4">
+            Stay Silent Records ist mehr als nur ein Studio – es ist ein Raum
+            für Kreativität, Inspiration und professionelle Musikproduktion. Wir
+            verbinden moderne Technik mit einem klaren, druckvollen Sound, der
+            Künstlern dabei hilft, ihre Vision voll zu entfalten.
+          </p>
+          <p class="text-gray-400 leading-relaxed mb-4">
+            Gegründet von <span class="text-[#FF6B00] font-semibold"
+              >Gregor Löffler</span
+            >, bringen wir Erfahrung in Mixing, Mastering und Produktion
+            zusammen mit einem feinen Gehör für Details. Unser Ziel ist es,
+            Musik nicht nur gut klingen zu lassen, sondern Emotionen zum Leben
+            zu erwecken.
+          </p>
+          <p class="text-gray-400 leading-relaxed">
+            Ob Metal, Rock, Pop-Punk oder moderne Genres – wir arbeiten mit
+            Leidenschaft, Präzision und einem hohen Anspruch an Qualität.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <Footer />
   </body>
 </html>

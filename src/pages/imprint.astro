@@ -1,0 +1,131 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Stay Silent Records</title>
+  </head>
+  <body class="bg-black p-3">
+    <Navbar />
+    <section class="px-6 md:px-10 lg:px-40 py-20 bg-black min-h-screen">
+      <div class="max-w-4xl mx-auto text-gray-300 space-y-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-8">
+          Impressum
+        </h1>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Angaben gemäß § 5 ECG
+          </h2>
+          <p>
+            <span class="font-semibold">Stay Silent Records</span><br />
+            Gregor Löffler<br />
+            Wolfgerhof 4/1<br />
+            2120 Wolkersdorf<br />
+            Österreich
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">Kontakt</h2>
+          <p>
+            Telefon: +43 664 1419662<br />
+            E-Mail: <a
+              href="mailto:info@staysilentrecords.at"
+              class="text-[#FF6B00] hover:underline"
+              >info@staysilentrecords.com</a
+            >
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Unternehmensdaten
+          </h2>
+          <p>
+            UID-Nummer: ATU81441307<br />
+            Firmenbuchnummer: FN 597911 g<br />
+            Firmenbuchgericht: Handelsgericht Korneuburg<br />
+            Mitglied der WKÖ, Fachgruppe Ton- und Musikproduktion<br />
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Berufsrechtliche Angaben
+          </h2>
+          <p>
+            Anwendbare Rechtsvorschriften: <a
+              href="https://www.ris.bka.gv.at/"
+              class="text-[#FF6B00] hover:underline">E-Commerce-Gesetz (ECG)</a
+            >, <a
+              href="https://eur-lex.europa.eu/"
+              class="text-[#FF6B00] hover:underline">DSGVO</a
+            ><br />
+            Aufsichtsbehörde: Magistratisches Bezirksamt Wien
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Haftung für Inhalte
+          </h2>
+          <p>
+            Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für
+            die Richtigkeit, Vollständigkeit und Aktualität der Inhalte
+            übernehmen wir jedoch keine Gewähr.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Haftung für Links
+          </h2>
+          <p>
+            Unsere Website enthält Links zu externen Websites, auf deren Inhalte
+            wir keinen Einfluss haben. Deshalb können wir für diese fremden
+            Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten
+            Seiten ist stets der jeweilige Anbieter oder Betreiber
+            verantwortlich.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">Urheberrecht</h2>
+          <p>
+            Die durch den Seitenbetreiber erstellten Inhalte und Werke auf
+            dieser Website unterliegen dem Urheberrecht. Beiträge Dritter sind
+            als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung,
+            Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+            Urheberrechtes bedürfen der schriftlichen Zustimmung des Autors.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Online-Streitbeilegung
+          </h2>
+          <p>
+            Verbraucher haben die Möglichkeit, Beschwerden an die
+            Online-Streitbeilegungsplattform der EU zu richten:
+            <a
+              href="https://ec.europa.eu/odr"
+              class="text-[#FF6B00] hover:underline">https://ec.europa.eu/odr</a
+            ><br />
+            Sie können Ihre Beschwerde auch an die oben angegebene E-Mail-Adresse
+            richten.
+          </p>
+        </div>
+      </div>
+    </section>
+    <Footer />
+  </body>
+</html>
