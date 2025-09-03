@@ -17,9 +17,18 @@ import Logo from "../assets/Logo.svg";
       <!-- Desktop -->
       <div class="hidden md:flex flex-1 justify-end items-center gap-8">
         <nav class="flex items-center gap-6">
-          <a class="text-gray-300 hover:text-white text-sm font-medium" href="#services">Services</a>
-          <a class="text-gray-300 hover:text-white text-sm font-medium" href="#about">About</a>
-          <a class="text-gray-300 hover:text-white text-sm font-medium" href="https://portal.staysilentrecords.com">Portal</a>
+          <a
+            class="text-gray-300 hover:text-white text-sm font-medium"
+            href="#services">Services</a
+          >
+          <a
+            class="text-gray-300 hover:text-white text-sm font-medium"
+            href="#about">About</a
+          >
+          <a
+            class="text-gray-300 hover:text-white text-sm font-medium"
+            href="https://portal.staysilentrecords.com">Portal</a
+          >
         </nav>
         <button
           id="cta-btn"
@@ -28,51 +37,50 @@ import Logo from "../assets/Logo.svg";
           <span class="truncate">Kontakt aufnehmen</span>
         </button>
       </div>
-
       <!-- Mobile Button -->
       <div class="md:hidden">
         <button
           id="menu-btn"
-          class="relative grid place-items-center size-10 text-white"
+          class="relative  grid place-items-center size-10 text-white"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
           <span class="sr-only">Menü öffnen</span>
-          <div class="relative w-7 h-5">
-            <!-- Top -->
+          <div class="flex flex-col items-center justify-center space-y-1.5">
             <span
               id="bar-top"
-              class="absolute left-0 top-0 h-0.5 w-7 bg-white
-                     transition-transform duration-300 ease-in-out"
+              class="block h-0.5 w-7 bg-white transition-transform duration-300 ease-in-out origin-center"
             ></span>
-            <!-- Middle -->
             <span
               id="bar-mid"
-              class="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 w-7 bg-white
-                     transition-opacity duration-300 ease-in-out"
+              class="block h-0.5 w-7 bg-white transition-all duration-300 ease-in-out origin-center"
             ></span>
-            <!-- Bottom -->
             <span
               id="bar-bot"
-              class="absolute left-0 bottom-0 h-0.5 w-7 bg-white
-                     transition-transform duration-300 ease-in-out"
+              class="block h-0.5 w-7 bg-white transition-transform duration-300 ease-in-out origin-center"
             ></span>
           </div>
         </button>
       </div>
     </header>
-
-    <!-- Mobile Menü (fixed, collapsible) -->
+    <!-- Mobile Menü (collapsible) -->
     <div
       id="mobile-menu"
       class="md:hidden bg-black/50 backdrop-blur-sm fixed inset-x-0 top-[72px] z-40
-             overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out
-             border-b border-gray-800"
+         overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out
+         border-b border-gray-800"
     >
-      <nav class="px-10 py-6 flex flex-col space-y-4 overflow-y-auto max-h-[calc(100vh-72px)]">
-        <a class="block text-gray-300 hover:text-white" href="#services">Services</a>
+      <nav
+        class="px-10 py-6 flex flex-col space-y-4 overflow-y-auto max-h-[calc(100vh-72px)]"
+      >
+        <a class="block text-gray-300 hover:text-white" href="#services"
+          >Services</a
+        >
         <a class="block text-gray-300 hover:text-white" href="#about">About</a>
-        <a class="block text-gray-300 hover:text-white" href="https://portal.staysilentrecords.com">Portal</a>
+        <a
+          class="block text-gray-300 hover:text-white"
+          href="https://portal.staysilentrecords.com">Portal</a
+        >
         <button
           id="cta-btn-mobile"
           class="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg"
@@ -87,7 +95,7 @@ import Logo from "../assets/Logo.svg";
 </div>
 
 <script>
-  // Smooth scroll CTAs
+  // Smooth scroll CTAs wie gehabt …
   document.getElementById("cta-btn")?.addEventListener("click", () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   });
@@ -96,10 +104,10 @@ import Logo from "../assets/Logo.svg";
     closeMenu();
   });
 
-  const btn  = document.getElementById("menu-btn");
+  const btn = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
 
-  // Hamburger Bars (jetzt mit IDs vorhanden)
+  // Hamburger Bars
   const topBar = document.getElementById("bar-top");
   const midBar = document.getElementById("bar-mid");
   const botBar = document.getElementById("bar-bot");
@@ -108,20 +116,21 @@ import Logo from "../assets/Logo.svg";
 
   function animateOpen() {
     // Top -> / (rotate 45, nach unten)
-    topBar.classList.add("translate-y-[10px]", "rotate-45");
+    topBar.classList.add("translate-y-[7px]", "rotate-45");
     // Mitte ausblenden
     midBar.classList.add("opacity-0");
     // Bottom -> \ (rotate -45, nach oben)
-    botBar.classList.add("-translate-y-[10px]", "-rotate-45");
+    botBar.classList.add("-translate-y-[7px]", "-rotate-45");
   }
 
   function animateClose() {
-    topBar.classList.remove("translate-y-[10px]", "rotate-45");
+    topBar.classList.remove("translate-y-[7px]", "rotate-45");
     midBar.classList.remove("opacity-0");
-    botBar.classList.remove("-translate-y-[10px]", "-rotate-45");
+    botBar.classList.remove("-translate-y-[7px]", "-rotate-45");
   }
 
   function openMenu() {
+    // Slide-Down Menü (wie zuvor)
     menu.style.maxHeight = menu.scrollHeight + "px";
     document.body.style.overflow = "hidden";
     btn.setAttribute("aria-expanded", "true");
@@ -140,10 +149,14 @@ import Logo from "../assets/Logo.svg";
   btn?.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
 
   // Links schließen Menü
-  menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+  menu
+    .querySelectorAll("a")
+    .forEach((a) => a.addEventListener("click", closeMenu));
 
   // ESC schließt
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen) closeMenu(); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) closeMenu();
+  });
 
   // Resize: bei Desktop zurücksetzen
   window.addEventListener("resize", () => {
