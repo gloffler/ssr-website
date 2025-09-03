@@ -16,10 +16,17 @@ import FadeIn from "../components/FadeIn.astro";
     </p>
     <div class="mt-8">
       <button
-        class="cta-button flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-transparent text-white border-2 border-[var(--primary-color)] text-base font-bold tracking-wide mx-auto"
+        id="cta-btn1"
+        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 bg-transparent text-white border-2 border-[var(--primary-color)] text-base font-bold tracking-wide mx-auto"
       >
         <span class="truncate">Book a Session</span>
       </button>
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementById("cta-btn1")?.addEventListener("click", () => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  });
+</script>
