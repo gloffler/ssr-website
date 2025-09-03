@@ -1,0 +1,233 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import FadeIn from "../components/FadeIn.astro";
+import "../styles/global.css";
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Datenschutzerklärung – Stay Silent Records</title>
+  </head>
+  <body class="bg-black p-3">
+    <FadeIn />
+    <Navbar />
+
+    <section class="px-6 md:px-10 lg:px-40 py-20 bg-black min-h-screen">
+      <div class="max-w-4xl mx-auto text-gray-300 space-y-8">
+        <h1 class="fade-in text-4xl md:text-5xl font-bold text-white">
+          Erklärung zur Informationspflicht – Datenschutzerklärung
+        </h1>
+
+        <div class="fade-in space-y-4">
+          <p>
+            In folgender Datenschutzerklärung informieren wir Sie über die
+            wichtigsten Aspekte der Datenverarbeitung im Rahmen unserer
+            Webseite. Wir erheben und verarbeiten personenbezogene Daten nur auf
+            Grundlage der gesetzlichen Bestimmungen (Datenschutzgrundverordnung,
+            Telekommunikationsgesetz 2003).
+          </p>
+          <p>
+            Sobald Sie als Benutzer auf unsere Webseite zugreifen oder diese
+            besuchen, wird Ihre IP-Adresse sowie Beginn und Ende der Sitzung
+            erfasst. Dies ist technisch bedingt und stellt somit ein
+            berechtigtes Interesse i. S. v. Art. 6 Abs. 1 lit. f DSGVO dar.
+          </p>
+        </div>
+
+        <!-- Kontakt -->
+        <div class="fade-in" id="kontakt">
+          <h2 class="text-xl font-semibold text-white mb-2">Kontakt mit uns</h2>
+          <p>
+            Wenn Sie uns über das Kontaktformular auf unserer Webseite oder per
+            E-Mail kontaktieren, werden die von Ihnen übermittelten Daten zwecks
+            Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen für
+            sechs Monate bei uns gespeichert. Ohne Ihre Einwilligung erfolgt
+            keine Weitergabe Ihrer Daten.
+          </p>
+        </div>
+
+        <!-- Cookies -->
+        <div class="fade-in" id="cookies">
+          <h2 class="text-xl font-semibold text-white mb-2">Cookies</h2>
+          <p>
+            Unsere Website verwendet sogenannte Cookies. Dabei handelt es sich
+            um kleine Textdateien, die mit Hilfe des Browsers auf Ihrem Endgerät
+            abgelegt werden. Sie richten keinen Schaden an. Wir nutzen Cookies,
+            um unser Angebot nutzerfreundlich zu gestalten. Einige Cookies
+            bleiben auf Ihrem Endgerät gespeichert, bis Sie diese löschen, und
+            ermöglichen die Wiedererkennung Ihres Browsers.
+          </p>
+          <p>
+            Wenn Sie dies nicht wünschen, können Sie Ihren Browser so
+            einrichten, dass er Sie über das Setzen von Cookies informiert und
+            Sie dies nur im Einzelfall erlauben. Bei der Deaktivierung von
+            Cookies kann die Funktionalität unserer Website eingeschränkt sein.
+          </p>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="fade-in" id="google-maps">
+          <h2 class="text-xl font-semibold text-white mb-2">Google Maps</h2>
+          <p>
+            Unsere Website verwendet Funktionen des Webkartendienstes „Google
+            Maps“. Diensteanbieter:
+            <br />Google Ireland Limited, Gordon House, Barrow Street, Dublin 4,
+            Ireland, Tel.: +353 1 543 1000.
+          </p>
+          <p>
+            Im Zuge der Nutzung von Google Maps ist es notwendig, Ihre
+            IP-Adresse zu speichern und zu verarbeiten. Google überträgt in der
+            Regel an einen Server in den USA und speichert die Daten dort. Die
+            Verarbeitung geschieht durch den Diensteanbieter; der Betreiber
+            dieser Website hat keinen Einfluss auf die Datenübertragung.
+          </p>
+          <p>
+            Rechtsgrundlage: § 96 Abs. 3 TKG sowie Art. 6 Abs. 1 lit. f DSGVO
+            (berechtigtes Interesse an besserer Auffindbarkeit von auf der
+            Website bereitgestellten Orten).
+          </p>
+          <p>
+            Weitere Informationen: <a
+              href="https://policies.google.com/privacy?hl=de"
+              class="text-[#FF6B00] hover:underline"
+              >Datenschutzerklärung von Google</a
+            >.
+          </p>
+          <p>
+            Google verarbeitet Daten auch in den USA und hat sich dem EU-US
+            Privacy-Shield unterworfen:
+            <a
+              href="https://www.privacyshield.gov/EU-US-Framework"
+              class="text-[#FF6B00] hover:underline">privacyshield.gov</a
+            >.
+          </p>
+        </div>
+
+        <!-- Google Fonts -->
+        <div class="fade-in" id="google-fonts">
+          <h2 class="text-xl font-semibold text-white mb-2">Google Fonts</h2>
+          <p>
+            Unsere Website verwendet Schriftarten von „Google Fonts“.
+            Diensteanbieter:
+            <br />Google Ireland Limited, Gordon House, Barrow Street, Dublin 4,
+            Ireland, Tel.: +353 1 543 1000.
+          </p>
+          <p>
+            Beim Aufrufen dieser Webseite lädt Ihr Browser Schriftarten und
+            speichert diese im Cache. Da Sie Daten vom Dienstanbieter empfangen,
+            kann Google unter Umständen Cookies auf Ihrem Rechner setzen oder
+            analysieren. Die Nutzung von Google Fonts dient der Optimierung
+            unserer Dienstleistung und der einheitlichen Darstellung von
+            Inhalten (berechtigtes Interesse gem. Art. 6 Abs. 1 lit. f DSGVO).
+          </p>
+          <p>
+            Mehr Informationen: <a
+              href="https://developers.google.com/fonts/faq"
+              class="text-[#FF6B00] hover:underline">Google Fonts FAQ</a
+            > ·
+            <a
+              href="https://policies.google.com/privacy?hl=de"
+              class="text-[#FF6B00] hover:underline"
+              >Datenschutzerklärung von Google</a
+            >.
+          </p>
+          <p>
+            Google verarbeitet Daten auch in den USA und hat sich dem EU-US
+            Privacy-Shield unterworfen:
+            <a
+              href="https://www.privacyshield.gov/EU-US-Framework"
+              class="text-[#FF6B00] hover:underline">privacyshield.gov</a
+            >.
+          </p>
+        </div>
+
+        <!-- Server-Logfiles -->
+        <div class="fade-in" id="server-logs">
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Server-Log Files
+          </h2>
+          <p>
+            Diese Webseite und der Provider erheben automatisch Informationen in
+            sogenannten „Server-Log Files“:
+          </p>
+          <ul class="list-disc pl-6">
+            <li>IP-Adresse oder Hostname</li>
+            <li>Verwendeter Browser</li>
+            <li>Aufenthaltsdauer, Datum und Uhrzeit</li>
+            <li>Aufgerufene Seiten</li>
+            <li>Spracheinstellungen und Betriebssystem</li>
+            <li>„Leaving-Page“ (URL, über die die Seite verlassen wurde)</li>
+            <li>ISP (Internet Service Provider)</li>
+          </ul>
+          <p class="mt-2">
+            Diese Informationen werden nicht personenbezogen verarbeitet oder
+            mit personenbezogenen Daten verknüpft. Bei Bekanntwerden
+            rechtswidriger Tätigkeiten behalten wir uns eine
+            Auswertung/Überprüfung vor.
+          </p>
+        </div>
+
+        <!-- Rechte Betroffener -->
+        <div class="fade-in" id="rechte">
+          <h2 class="text-xl font-semibold text-white mb-2">
+            Ihre Rechte als Betroffener
+          </h2>
+          <p>
+            Bezüglich der bei uns gespeicherten Daten haben Sie grundsätzlich
+            das Recht auf:
+          </p>
+          <ul class="list-disc pl-6">
+            <li>Auskunft</li>
+            <li>Löschung der Daten</li>
+            <li>Berichtigung der Daten</li>
+            <li>Übertragbarkeit der Daten</li>
+            <li>Widerruf und Widerspruch zur Datenverarbeitung</li>
+            <li>Einschränkung der Verarbeitung</li>
+          </ul>
+          <p class="mt-2">
+            Wenn Sie vermuten, dass im Zuge der Verarbeitung Ihrer Daten
+            Verstöße gegen das Datenschutzrecht passiert sind, können Sie sich
+            bei uns (<a
+              href="mailto:info@staysilentrecords.com"
+              class="text-[#FF6B00] hover:underline"
+              >info@staysilentrecords.com</a
+            >) oder bei der Datenschutzbehörde beschweren.
+          </p>
+        </div>
+
+        <!-- Kontakt/Impressum -->
+        <div class="fade-in" id="anschrift">
+          <h2 class="text-xl font-semibold text-white mb-2">Kontakt</h2>
+          <p>
+            Webseitenbetreiber: Stay Silent Records e.U.<br />
+            Telefon: <a
+              href="tel:+436641419662"
+              class="text-[#FF6B00] hover:underline">+43 664 1419662</a
+            ><br />
+            E-Mail: <a
+              href="mailto:info@staysilentrecords.com"
+              class="text-[#FF6B00] hover:underline"
+              >info@staysilentrecords.com</a
+            >
+          </p>
+        </div>
+
+        <hr class="border-gray-800" />
+
+        <a
+          href="https://www.fairesrecht.at/kostenlos-datenschutzerklaerung-erstellen-generator.php"
+          class="fade-in text-xs text-gray-500"
+        >
+          Quelle: Datenschutzgenerator Österreich DSGVO
+        </a>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>
