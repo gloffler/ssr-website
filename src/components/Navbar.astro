@@ -32,7 +32,7 @@ import Logo from "../assets/Logo.svg";
           >
         </nav>
         <button
-          class="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
+          id="cta-btn" class="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
         >
           <span class="truncate">Book a Session</span>
         </button>
@@ -45,3 +45,9 @@ import Logo from "../assets/Logo.svg";
     </header>
   </div>
 </div>
+
+<script>
+  document.getElementById("cta-btn")?.addEventListener("click", () => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  });
+</script>
