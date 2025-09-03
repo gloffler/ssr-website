@@ -3,52 +3,168 @@ import Logo from "../assets/Logo.svg";
 ---
 
 <div
-  class="relative flex size-full flex-col bg-black dark group/design-root overflow-x-hidden"
+  class="relative flex size-full flex-col bg-black overflow-x-hidden"
   style='font-family: "Spline Sans", "Noto Sans", sans-serif;'
 >
   <div class="layout-container flex h-full grow flex-col">
     <header
-      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap bg-black/50 backdrop-blur-sm px-10 py-4 border-b border-solid border-b-gray-800 transition-all duration-300"
+      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-black/50 backdrop-blur-sm px-10 py-4 border-b border-b-gray-800"
     >
       <div class="flex items-center gap-3 text-white">
         <a href="/"><Logo width={50} /></a>
-        <h2 class="text-white text-xl font-bold tracking-tight">
-          Stay Silent Records
-        </h2>
       </div>
+
+      <!-- Desktop -->
       <div class="hidden md:flex flex-1 justify-end items-center gap-8">
         <nav class="flex items-center gap-6">
           <a
-            class="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+            class="text-gray-300 hover:text-white text-sm font-medium"
             href="#services">Services</a
           >
           <a
-            class="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+            class="text-gray-300 hover:text-white text-sm font-medium"
             href="#about">About</a
           >
           <a
-            class="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+            class="text-gray-300 hover:text-white text-sm font-medium"
             href="https://portal.staysilentrecords.com">Portal</a
           >
         </nav>
         <button
           id="cta-btn"
-          class="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
+          class="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
         >
           <span class="truncate">Kontakt aufnehmen</span>
         </button>
       </div>
+
+      <!-- Mobile Button -->
+      <!-- Mobile Button -->
       <div class="md:hidden">
-        <button class="text-white">
-          <span class="material-symbols-outlined"> menu </span>
+        <button
+          id="menu-btn"
+          class="relative grid place-items-center size-10 text-white"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Menü öffnen</span>
+          <div class="flex flex-col items-center justify-center space-y-1.5">
+            <span
+              id="bar-top"
+              class="block h-0.5 w-7 bg-white transition-transform duration-300 ease-in-out origin-center"
+            ></span>
+            <span
+              id="bar-mid"
+              class="block h-0.5 w-7 bg-white transition-all duration-300 ease-in-out origin-center"
+            ></span>
+            <span
+              id="bar-bot"
+              class="block h-0.5 w-7 bg-white transition-transform duration-300 ease-in-out origin-center"
+            ></span>
+          </div>
         </button>
       </div>
     </header>
+    <!-- Mobile Menü (collapsible) -->
+    <div
+      id="mobile-menu"
+      class="md:hidden fixed inset-x-0 top-[72px] z-40
+         overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out
+         bg-black/95 border-b border-gray-800"
+    >
+      <nav
+        class="px-10 py-6 flex flex-col space-y-4 overflow-y-auto max-h-[calc(100vh-72px)]"
+      >
+        <a class="block text-gray-300 hover:text-white" href="#services"
+          >Services</a
+        >
+        <a class="block text-gray-300 hover:text-white" href="#about">About</a>
+        <a
+          class="block text-gray-300 hover:text-white"
+          href="https://portal.staysilentrecords.com">Portal</a
+        >
+        <button
+          id="cta-btn-mobile"
+          class="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg"
+        >
+          Kontakt aufnehmen
+        </button>
+      </nav>
+    </div>
+
+    <!-- …dein restlicher Content… -->
   </div>
 </div>
 
 <script>
+  // Smooth scroll CTAs wie gehabt …
   document.getElementById("cta-btn")?.addEventListener("click", () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  });
+  document.getElementById("cta-btn-mobile")?.addEventListener("click", () => {
+    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+    closeMenu();
+  });
+
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  // Hamburger Bars
+  const topBar = document.getElementById("bar-top");
+  const midBar = document.getElementById("bar-mid");
+  const botBar = document.getElementById("bar-bot");
+
+  let isOpen = false;
+
+  function animateOpen() {
+    // Top -> / (rotate 45, nach unten)
+    topBar.classList.add("translate-y-[7px]", "rotate-45");
+    // Mitte ausblenden
+    midBar.classList.add("opacity-0");
+    // Bottom -> \ (rotate -45, nach oben)
+    botBar.classList.add("-translate-y-[7px]", "-rotate-45");
+  }
+
+  function animateClose() {
+    topBar.classList.remove("translate-y-[7px]", "rotate-45");
+    midBar.classList.remove("opacity-0");
+    botBar.classList.remove("-translate-y-[7px]", "-rotate-45");
+  }
+
+  function openMenu() {
+    // Slide-Down Menü (wie zuvor)
+    menu.style.maxHeight = menu.scrollHeight + "px";
+    document.body.style.overflow = "hidden";
+    btn.setAttribute("aria-expanded", "true");
+    animateOpen();
+    isOpen = true;
+  }
+
+  function closeMenu() {
+    menu.style.maxHeight = "0px";
+    document.body.style.overflow = "";
+    btn.setAttribute("aria-expanded", "false");
+    animateClose();
+    isOpen = false;
+  }
+
+  btn?.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
+
+  // Links schließen Menü
+  menu
+    .querySelectorAll("a")
+    .forEach((a) => a.addEventListener("click", closeMenu));
+
+  // ESC schließt
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) closeMenu();
+  });
+
+  // Resize: bei Desktop zurücksetzen
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      closeMenu();
+      menu.style.maxHeight = "";
+    }
   });
 </script>
