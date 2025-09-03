@@ -37,13 +37,11 @@ import Logo from "../assets/Logo.svg";
           <span class="truncate">Kontakt aufnehmen</span>
         </button>
       </div>
-
-      <!-- Mobile Button -->
       <!-- Mobile Button -->
       <div class="md:hidden">
         <button
           id="menu-btn"
-          class="relative grid place-items-center size-10 text-white"
+          class="relative  grid place-items-center size-10 text-white"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -68,9 +66,9 @@ import Logo from "../assets/Logo.svg";
     <!-- Mobile Menü (collapsible) -->
     <div
       id="mobile-menu"
-      class="md:hidden fixed inset-x-0 top-[72px] z-40
+      class="md:hidden bg-black/50 backdrop-blur-sm fixed inset-x-0 top-[72px] z-40
          overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out
-         bg-black/95 border-b border-gray-800"
+         border-b border-gray-800"
     >
       <nav
         class="px-10 py-6 flex flex-col space-y-4 overflow-y-auto max-h-[calc(100vh-72px)]"
