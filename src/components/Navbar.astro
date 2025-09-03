@@ -104,7 +104,7 @@ import Logo from "../assets/Logo.svg";
     closeMenu();
   });
 
-  const btn = document.getElementById("menu-btn");
+  const btn  = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
 
   // Hamburger Bars
@@ -112,36 +112,51 @@ import Logo from "../assets/Logo.svg";
   const midBar = document.getElementById("bar-mid");
   const botBar = document.getElementById("bar-bot");
 
+  // Scroll-Fix: Menü darf scrollen; Seite dahinter wird gesperrt
+  menu.style.webkitOverflowScrolling = "touch";
+  menu.style.overscrollBehavior = "contain";
+  const root = document.documentElement; // <html>
+
+  function lockScroll(lock) {
+    root.style.overflowY = lock ? "hidden" : "";
+  }
+
+  // Höhe des Menüs nachziehen, falls Inhalt sich ändert
+  function syncMenuHeight() {
+    if (isOpen) menu.style.maxHeight = menu.scrollHeight + "px";
+  }
+  const ro = new ResizeObserver(syncMenuHeight);
+  ro.observe(menu);
+
   let isOpen = false;
 
   function animateOpen() {
     // Top -> / (rotate 45, nach unten)
-    topBar.classList.add("translate-y-[7px]", "rotate-45");
+    topBar?.classList.add("translate-y-[7px]", "rotate-45");
     // Mitte ausblenden
-    midBar.classList.add("opacity-0");
+    midBar?.classList.add("opacity-0");
     // Bottom -> \ (rotate -45, nach oben)
-    botBar.classList.add("-translate-y-[7px]", "-rotate-45");
+    botBar?.classList.add("-translate-y-[7px]", "-rotate-45");
   }
 
   function animateClose() {
-    topBar.classList.remove("translate-y-[7px]", "rotate-45");
-    midBar.classList.remove("opacity-0");
-    botBar.classList.remove("-translate-y-[7px]", "-rotate-45");
+    topBar?.classList.remove("translate-y-[7px]", "rotate-45");
+    midBar?.classList.remove("opacity-0");
+    botBar?.classList.remove("-translate-y-[7px]", "-rotate-45");
   }
 
   function openMenu() {
-    // Slide-Down Menü (wie zuvor)
-    menu.style.maxHeight = menu.scrollHeight + "px";
-    document.body.style.overflow = "hidden";
-    btn.setAttribute("aria-expanded", "true");
+    menu.style.maxHeight = menu.scrollHeight + "px"; // Slide-Down
+    lockScroll(true);                                 // <<< statt body sperren wir <html>
+    btn?.setAttribute("aria-expanded", "true");
     animateOpen();
     isOpen = true;
   }
 
   function closeMenu() {
     menu.style.maxHeight = "0px";
-    document.body.style.overflow = "";
-    btn.setAttribute("aria-expanded", "false");
+    lockScroll(false);                                // <<< wieder freigeben
+    btn?.setAttribute("aria-expanded", "false");
     animateClose();
     isOpen = false;
   }
@@ -149,20 +164,20 @@ import Logo from "../assets/Logo.svg";
   btn?.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
 
   // Links schließen Menü
-  menu
-    .querySelectorAll("a")
-    .forEach((a) => a.addEventListener("click", closeMenu));
+  menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
 
   // ESC schließt
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isOpen) closeMenu();
   });
 
-  // Resize: bei Desktop zurücksetzen
+  // Resize: bei Desktop zurücksetzen; bei Mobile Höhe nachziehen
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 768) {
       closeMenu();
-      menu.style.maxHeight = "";
+      menu.style.maxHeight = ""; // Tailwind übernimmt wieder
+    } else {
+      syncMenuHeight();
     }
   });
 </script>
