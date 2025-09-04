@@ -13,3 +13,15 @@
 html {
   scroll-behavior: smooth;
 }
+@keyframes shine-glow {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shine-glow {
+  animation: shine-glow 7s linear infinite;
+}
