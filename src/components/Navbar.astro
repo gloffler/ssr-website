@@ -32,6 +32,10 @@ import Logo from "../assets/Logo.svg";
             rel="noopener"
             href="https://portal.staysilentrecords.com">Portal</a
           >
+          <a
+            class="text-gray-300 hover:text-white text-sm font-medium"
+            href="#faq">FAQ</a
+          >
         </nav>
         <button
           id="cta-btn"
@@ -44,7 +48,7 @@ import Logo from "../assets/Logo.svg";
       <div class="md:hidden">
         <button
           id="menu-btn"
-          class="relative  grid place-items-center size-10 text-white"
+          class="relative grid place-items-center size-10 text-white"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
@@ -81,9 +85,10 @@ import Logo from "../assets/Logo.svg";
         >
         <a class="block text-gray-300 hover:text-white" href="#about">About</a>
         <a
-          class="block text-gray-300 hover:text-white"
-          href="https://portal.staysilentrecords.com">Portal</a
+        class="block text-gray-300 hover:text-white"
+        href="https://portal.staysilentrecords.com">Portal</a
         >
+        <a class="block text-gray-300 hover:text-white" href="#faq">FAQ</a>
         <button
           id="cta-btn-mobile"
           class="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg"
@@ -107,7 +112,7 @@ import Logo from "../assets/Logo.svg";
     closeMenu();
   });
 
-  const btn  = document.getElementById("menu-btn");
+  const btn = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
 
   // Hamburger Bars
@@ -150,7 +155,7 @@ import Logo from "../assets/Logo.svg";
 
   function openMenu() {
     menu.style.maxHeight = menu.scrollHeight + "px"; // Slide-Down
-    lockScroll(true);                                 // <<< statt body sperren wir <html>
+    lockScroll(true); // <<< statt body sperren wir <html>
     btn?.setAttribute("aria-expanded", "true");
     animateOpen();
     isOpen = true;
@@ -158,7 +163,7 @@ import Logo from "../assets/Logo.svg";
 
   function closeMenu() {
     menu.style.maxHeight = "0px";
-    lockScroll(false);                                // <<< wieder freigeben
+    lockScroll(false); // <<< wieder freigeben
     btn?.setAttribute("aria-expanded", "false");
     animateClose();
     isOpen = false;
@@ -167,7 +172,9 @@ import Logo from "../assets/Logo.svg";
   btn?.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
 
   // Links schließen Menü
-  menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+  menu
+    .querySelectorAll("a")
+    .forEach((a) => a.addEventListener("click", closeMenu));
 
   // ESC schließt
   document.addEventListener("keydown", (e) => {
