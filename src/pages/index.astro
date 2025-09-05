@@ -6,11 +6,63 @@ import Benefits from "../components/Benefits.astro";
 import CTA from "../components/CTA.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
+import FAQ from "../components/FAQ.astro";
 import Footer from "../components/Footer.astro";
 
 import CookieBanner from "../components/CookieBanner.astro";
 
 import "../styles/global.css";
+
+const faqs = [
+  {
+    question: "Wie lade ich Dateien hoch?",
+    answer:
+      "Klicke auf „Upload“ und wähle deine Dateien aus. Formate: WAV, AIFF, MP3.",
+  },
+  {
+    question: "Wie lange dauert das Mixing?",
+    answer: "Je nach Projektumfang 3–5 Werktage. Express auf Anfrage.",
+  },
+  {
+    question: "Welche Bezahlmethoden gibt es?",
+    answer: "Klarna, Kreditkarte, PayPal, Überweisung.",
+  },
+  {
+    question: "Bietet ihr auch Mastering an?",
+    answer:
+      "Ja, Mastering ist optional buchbar. Es verleiht deinem Track den finalen Glanz und die optimale Lautheit.",
+  },
+  {
+    question: "Kann ich Feedback zum Song vor dem finalen Mix geben?",
+    answer:
+      "Natürlich. Du erhältst einen ersten Mix zur Durchsicht und kannst Änderungswünsche einbringen.",
+  },
+  {
+    question: "Nehmt ihr auch komplette Produktionen auf?",
+    answer:
+      "Ja, wir bieten Recording-Sessions im Studio an. Von einzelnen Vocals bis zu kompletten Bands.",
+  },
+  {
+    question: "Welche Genres bearbeitet ihr?",
+    answer:
+      "Schwerpunkt sind Rock, Metal, Pop-Punk und verwandte Stile – aber wir sind offen für viele Genres.",
+  },
+  {
+    question: "In welchem Dateiformat erhalte ich den finalen Mix?",
+    answer:
+      "Standardmäßig als WAV in 24 Bit / 44.1 kHz. Auf Wunsch auch MP3 oder andere Formate.",
+  },
+  {
+    question: "Wie läuft die Kommunikation ab?",
+    answer:
+      "Du kannst uns jederzeit per E-Mail oder Kontaktformular erreichen. Updates und Mix-Previews schicken wir dir digital.",
+  },
+  {
+    question: "Was passiert, wenn ich unzufrieden bin?",
+    answer:
+      "Du erhältst mehrere Revisionen inklusive. Unser Ziel ist, dass du 100% zufrieden bist.",
+  },
+];
 ---
 
 <html lang="en">
@@ -25,11 +77,12 @@ import "../styles/global.css";
     <CookieBanner />
     <Navbar />
     <Hero />
-		<Services />
-		<Benefits />
-		<CTA />
+    <Services />
+    <Benefits />
+    <CTA />
     <About />
     <Contact />
-		<Footer />
+    <FAQ items={faqs} multipleOpen={false} title="FAQ" />
+    <Footer />
   </body>
 </html>
