@@ -1,12 +1,13 @@
 ---
-// components/FAQ.astro
+import FadeIn from "../components/FadeIn.astro";
+
 export interface FAQItem { question: string; answer: string }
 interface Props { items: FAQItem[]; multipleOpen?: boolean; title?: string }
 const { items, multipleOpen = true, title = "FAQ" } = Astro.props;
 ---
 
-<section class="w-full max-w-3xl mx-auto" data-multiple-open={multipleOpen}>
-  <h2 class="text-3xl font-bold tracking-tight text-white mb-6">{title}</h2>
+<section class="fade-in w-full max-w-3xl py-20 mx-auto" data-multiple-open={multipleOpen}>
+  <h2 class="text-3xl font-bold tracking-tight text-center text-white mb-6">{title}</h2>
 
   <ul class="rounded-2xl border border-gray-800 overflow-hidden bg-gray-900/50 divide-y divide-gray-800">
     {items.map((item, i) => {
