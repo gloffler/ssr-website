@@ -1,6 +1,4 @@
 ---
-import FadeIn from "../components/FadeIn.astro";
-
 export interface FAQItem { question: string; answer: string }
 interface Props { items: FAQItem[]; multipleOpen?: boolean; title?: string }
 const { items, multipleOpen = true, title = "FAQ" } = Astro.props;
