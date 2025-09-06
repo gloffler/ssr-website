@@ -11,12 +11,12 @@ export interface Props {
 
 const {
   title = "Kontakt aufnehmen",
-  subtitle = "Sag uns kurz, worum es geht – wir melden uns zeitnah.",
+  subtitle = "Sag mir kurz, worum es geht. Ich melde mich zeitnah.", 
   action = "/api/contact",
   method = "POST",
   ctaLabel = "Nachricht senden",
   successMessage = "Danke! Deine Nachricht wurde erfolgreich übermittelt.",
-  errorMessage = "Uff – da ging was schief. Bitte versuch’s erneut.",
+  errorMessage = "Ups, da ging was schief. Bitte versuch's erneut.",
 } = Astro.props;
 ---
 
@@ -101,7 +101,7 @@ const {
           placeholder="Erzähl kurz, worum es geht …"></textarea>
       </div>
 
-      <div class="fade-in flex items-end gap-3">
+      <div class="fade-in flex items-start md:items-center gap-3">
         <input
           id="consent"
           name="consent"
