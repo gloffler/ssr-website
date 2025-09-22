@@ -42,6 +42,13 @@ const {
       class="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 space-y-6"
       novalidate
     >
+      <!-- Turnstile Widget -->
+      <div
+        class="cf-turnstile"
+        data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+        data-theme="dark"
+      >
+      </div>
       <!-- Honeypot -->
       <input
         type="text"
@@ -135,54 +142,58 @@ const {
     </form>
   </div>
 
-<script is:inline>
-  // Props aus Astro beim Rendern in Variablen injizieren
-  const form = document.getElementById("contactForm");
-  const statusEl = document.getElementById("formStatus");
-  const successMessage = form?.dataset.success || "Danke!";
-  const errorMessage = form?.dataset.error || "Fehler!";
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
 
+  <script is:inline>
+    // Props aus Astro beim Rendern in Variablen injizieren
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+    const successMessage = form?.dataset.success || "Danke!";
+    const errorMessage = form?.dataset.error || "Fehler!";
 
-  function setStatus(msg, ok = true) {
-    if (!statusEl) return;
-    statusEl.textContent = msg;
-    statusEl.className =
-      "text-sm " + (ok ? "text-green-400" : "text-red-400");
-  }
-
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = (form.querySelector("#name")).value.trim();
-    const email = (form.querySelector("#email")).value.trim();
-    const message = (form.querySelector("#message")).value.trim();
-    const consent = (form.querySelector("#consent")).checked;
-
-    if (!name || !email || !message || !consent) {
-      setStatus(
-        "Bitte fülle alle Pflichtfelder aus und bestätige die Einwilligung.",
-        false
-      );
-      return;
+    function setStatus(msg, ok = true) {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.className =
+        "text-sm " + (ok ? "text-green-400" : "text-red-400");
     }
 
-    try {
-      setStatus("Senden …", true);
-      const formData = new FormData(form);
-      const res = await fetch(form.action, {
-        method: form.method || "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-      if (!res.ok) throw new Error("Request failed");
+      const name = form.querySelector("#name").value.trim();
+      const email = form.querySelector("#email").value.trim();
+      const message = form.querySelector("#message").value.trim();
+      const consent = form.querySelector("#consent").checked;
 
-      setStatus(successMessage, true);
-      form.reset();
-    } catch (err) {
-      console.error("Kontaktformular Fehler:", err);
-      setStatus(errorMessage, false);
-    }
-  });
-</script>
+      if (!name || !email || !message || !consent) {
+        setStatus(
+          "Bitte fülle alle Pflichtfelder aus und bestätige die Einwilligung.",
+          false
+        );
+        return;
+      }
+
+      try {
+        setStatus("Senden …", true);
+        const formData = new FormData(form);
+        const res = await fetch(form.action, {
+          method: form.method || "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (!res.ok) throw new Error("Request failed");
+
+        setStatus(successMessage, true);
+        form.reset();
+      } catch (err) {
+        console.error("Kontaktformular Fehler:", err);
+        setStatus(errorMessage, false);
+      }
+    });
+  </script>
 </section>
