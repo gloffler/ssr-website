@@ -1,5 +1,8 @@
 import type { APIRoute } from "astro";
 import nodemailer from "nodemailer";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -32,11 +35,11 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Transporter konfigurieren (nutze z. B. SMTP von deinem Mail-Provider)
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST, // z. B. "smtp.gmail.com"
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: false, // true für Port 465
+      host: process.env.SMTP_HOST, // mx1525.netcup.net
+      port: Number(process.env.SMTP_PORT), // 465
+      secure: true, // wichtig: Port 465 → secure: true
       auth: {
-        user: process.env.SMTP_USER,
+        user: process.env.SMTP_USER, // noreply@staysilentrecords.com
         pass: process.env.SMTP_PASS,
       },
     });
