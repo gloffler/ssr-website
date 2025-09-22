@@ -33,13 +33,12 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Transporter konfigurieren (nutze z. B. SMTP von deinem Mail-Provider)
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST, // mx1525.netcup.net
-      port: Number(process.env.SMTP_PORT), // 465
-      secure: true, // wichtig: Port 465 → secure: true
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: true,
       auth: {
-        user: process.env.SMTP_USER, // noreply@staysilentrecords.com
+        user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     });
